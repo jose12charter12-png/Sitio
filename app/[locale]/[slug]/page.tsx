@@ -1,11 +1,59 @@
 import { notFound } from "next/navigation";
-import { isLocale } from "@/lib/config";
-const pages:Record<string,Record<"es"|"en",{title:string;body:string[]}>>={
-about:{es:{title:"Sobre nosotros",body:["Wellness Journal es un proyecto editorial dedicado a compartir información general y recursos prácticos sobre bienestar, fitness, sueño y recuperación.","Nuestro objetivo es explicar conceptos con claridad, promover hábitos sostenibles y enlazar a fuentes fiables. El contenido no sustituye la orientación individual de profesionales cualificados."]},en:{title:"About us",body:["Wellness Journal is an editorial project sharing general information and practical resources about wellbeing, fitness, sleep and recovery.","Our goal is to explain concepts clearly, encourage sustainable habits and refer readers to reliable sources. Content does not replace individual guidance from qualified professionals."]}},
-"editorial-policy":{es:{title:"Política editorial",body:["Nuestro contenido debe ser claro, útil, original y responsable. Priorizamos fuentes fiables y distinguimos la información general de la orientación médica individual.","Los artículos de salud y bienestar deben indicar su propósito educativo, evitar promesas de resultados y someterse a revisión humana antes de publicarse. Las traducciones automáticas requieren revisión lingüística y contextual.","Las recomendaciones comerciales y los enlaces de afiliados deben identificarse de forma transparente. Las relaciones comerciales no determinan por sí solas nuestras conclusiones editoriales. Corrige o actualiza el contenido cuando aparezca información fiable nueva."]},en:{title:"Editorial policy",body:["Our content should be clear, useful, original and responsible. We prioritize reliable sources and distinguish general information from individual medical guidance.","Health and wellbeing articles must state their educational purpose, avoid outcome promises and receive human review before publication. Machine translations require linguistic and contextual review.","Commercial recommendations and affiliate links must be transparently disclosed. Commercial relationships do not determine editorial conclusions. Correct or update content when reliable new information becomes available."]}},contact:{es:{title:"Contacto",body:["Para consultas editoriales, correcciones o asuntos relacionados con el sitio, escribe a contact@example.com.","Reemplaza este correo por una dirección operativa antes de publicar."]},en:{title:"Contact",body:["For editorial enquiries, corrections or website matters, email contact@example.com.","Replace this address with an active contact email before publishing."]}},
-privacy:{es:{title:"Política de privacidad",body:["Esta página es una plantilla y debe adaptarse a la entidad responsable, los países objetivo, los proveedores y las leyes aplicables antes de publicarse.","Documenta datos recopilados, finalidades, bases legales, conservación, destinatarios, transferencias, derechos y un canal de contacto. No declares prácticas que el sitio no realiza.","Configura formularios, analítica y publicidad para respetar las opciones de consentimiento aplicables."]},en:{title:"Privacy policy",body:["This page is a template and must be adapted to the responsible entity, target countries, vendors and applicable laws before publication.","Document collected data, purposes, legal bases, retention, recipients, transfers, individual rights and a contact channel. Do not claim practices the site does not follow.","Configure forms, analytics and advertising to respect applicable consent choices."]}},
-cookies:{es:{title:"Política de cookies",body:["Identifica cookies y tecnologías utilizadas, proveedores, finalidad, duración y cómo retirar o modificar el consentimiento.","Esta plantilla no sustituye una auditoría real. Integra una plataforma de gestión del consentimiento adecuada y evita activar etiquetas no esenciales antes del consentimiento requerido."]},en:{title:"Cookie policy",body:["Identify cookies and technologies in use, providers, purposes, duration and how visitors can withdraw or change consent.","This template does not replace a real audit. Integrate an appropriate consent platform and prevent non-essential tags from firing before required consent."]}},
-terms:{es:{title:"Términos de uso",body:["El sitio ofrece contenido educativo general. No constituye asesoramiento médico, diagnóstico, tratamiento ni una relación profesional.","Adapta estos términos a la entidad operadora, legislación aplicable, propiedad intelectual, uso permitido y resolución de disputas antes del lanzamiento."]},en:{title:"Terms of use",body:["This website provides general educational content. It is not medical advice, diagnosis, treatment or a professional relationship.","Adapt these terms to the operating entity, applicable law, intellectual property, acceptable use and dispute resolution before launch."]}},
-"affiliate-disclosure":{es:{title:"Divulgación de afiliados",body:["Algunos enlaces pueden ser enlaces de afiliado. Si realizas una compra mediante ellos, el sitio podría recibir una comisión sin coste adicional para ti.","Las relaciones comerciales no deben sustituir la evaluación editorial. Identificaremos las relaciones materiales de forma clara y cerca del enlace o recomendación."]},en:{title:"Affiliate disclosure",body:["Some links may be affiliate links. If you make a purchase through them, the site may earn a commission at no extra cost to you.","Commercial relationships should not replace editorial judgement. Material connections will be clearly disclosed near the relevant link or recommendation."]}}
+import { isLocale, locales } from "@/lib/config";
+
+const pages: Record<string, Record<"es" | "en", { title: string; body: string[] }>> = {
+  about: {
+    es: { title: "Sobre nosotros", body: ["Wellness Journal es un proyecto editorial dedicado a compartir información general y recursos prácticos sobre bienestar, fitness, sueño y recuperación.", "Nuestro objetivo es explicar conceptos con claridad, promover hábitos sostenibles y enlazar a fuentes fiables. El contenido no sustituye la orientación individual de profesionales cualificados."] },
+    en: { title: "About us", body: ["Wellness Journal is an editorial project sharing general information and practical resources about wellbeing, fitness, sleep and recovery.", "Our goal is to explain concepts clearly, encourage sustainable habits and refer readers to reliable sources. Content does not replace individual guidance from qualified professionals."] }
+  },
+  "editorial-policy": {
+    es: { title: "Política editorial", body: ["Nuestro contenido debe ser claro, útil, original y responsable. Priorizamos fuentes fiables y distinguimos la información general de la orientación médica individual.", "Los artículos de salud y bienestar deben indicar su propósito educativo, evitar promesas de resultados y someterse a revisión humana antes de publicarse. Las traducciones automáticas requieren revisión lingüística y contextual.", "Las recomendaciones comerciales y los enlaces de afiliados deben identificarse de forma transparente. Las relaciones comerciales no determinan por sí solas nuestras conclusiones editoriales. Corrige o actualiza el contenido cuando aparezca información fiable nueva."] },
+    en: { title: "Editorial policy", body: ["Our content should be clear, useful, original and responsible. We prioritize reliable sources and distinguish general information from individual medical guidance.", "Health and wellbeing articles must state their educational purpose, avoid outcome promises and receive human review before publication. Machine translations require linguistic and contextual review.", "Commercial recommendations and affiliate links must be transparently disclosed. Commercial relationships do not determine editorial conclusions. Correct or update content when reliable new information becomes available."] }
+  },
+  contact: {
+    es: { title: "Contacto", body: ["Para consultas editoriales, correcciones o asuntos relacionados con el sitio, utiliza el canal de contacto que se publicará aquí antes del lanzamiento.", "El correo de contacto aún no está configurado. No publiques esta página como canal operativo hasta añadir una dirección real."] },
+    en: { title: "Contact", body: ["For editorial enquiries, corrections or website matters, use the contact channel that will be published here before launch.", "A contact email has not been configured yet. Do not publish this page as an active contact channel until a real address is added."] }
+  },
+  privacy: {
+    es: { title: "Política de privacidad", body: ["Esta página es una plantilla y debe adaptarse a la entidad responsable, los países objetivo, los proveedores y las leyes aplicables antes de publicarse.", "Documenta datos recopilados, finalidades, bases legales, conservación, destinatarios, transferencias, derechos y un canal de contacto. No declares prácticas que el sitio no realiza.", "Configura formularios, analítica y publicidad para respetar las opciones de consentimiento aplicables."] },
+    en: { title: "Privacy policy", body: ["This page is a template and must be adapted to the responsible entity, target countries, vendors and applicable laws before publication.", "Document collected data, purposes, legal bases, retention, recipients, transfers, individual rights and a contact channel. Do not claim practices the site does not follow.", "Configure forms, analytics and advertising to respect applicable consent choices."] }
+  },
+  cookies: {
+    es: { title: "Política de cookies", body: ["Identifica cookies y tecnologías utilizadas, proveedores, finalidad, duración y cómo retirar o modificar el consentimiento.", "Esta plantilla no sustituye una auditoría real. Integra una plataforma de gestión del consentimiento adecuada y evita activar etiquetas no esenciales antes del consentimiento requerido."] },
+    en: { title: "Cookie policy", body: ["Identify cookies and technologies in use, providers, purposes, duration and how visitors can withdraw or change consent.", "This template does not replace a real audit. Integrate an appropriate consent platform and prevent non-essential tags from firing before required consent."] }
+  },
+  terms: {
+    es: { title: "Términos de uso", body: ["El sitio ofrece contenido educativo general. No constituye asesoramiento médico, diagnóstico, tratamiento ni una relación profesional.", "Adapta estos términos a la entidad operadora, legislación aplicable, propiedad intelectual, uso permitido y resolución de disputas antes del lanzamiento."] },
+    en: { title: "Terms of use", body: ["This website provides general educational content. It is not medical advice, diagnosis, treatment or a professional relationship.", "Adapt these terms to the operating entity, applicable law, intellectual property, acceptable use and dispute resolution before launch."] }
+  },
+  "affiliate-disclosure": {
+    es: { title: "Divulgación de afiliados", body: ["Algunos enlaces pueden ser enlaces de afiliado. Si realizas una compra mediante ellos, el sitio podría recibir una comisión sin coste adicional para ti.", "Las relaciones comerciales no deben sustituir la evaluación editorial. Identificaremos las relaciones materiales de forma clara y cerca del enlace o recomendación."] },
+    en: { title: "Affiliate disclosure", body: ["Some links may be affiliate links. If you make a purchase through them, the site may earn a commission at no extra cost to you.", "Commercial relationships should not replace editorial judgement. Material connections will be clearly disclosed near the relevant link or recommendation."] }
+  }
 };
-export default async function InfoPage({params}:{params:Promise<{locale:string;slug:string}>}){const {locale,slug}=await params;if(!isLocale(locale))notFound();const page=pages[slug]?.[locale];if(!page)notFound();return <section className="simple-page"><div className="container article-content"><span className="eyebrow">WELLNESS JOURNAL</span><h1>{page.title}</h1>{page.body.map((p,i)=><p key={i}>{p}</p>)}{["privacy","cookies","terms","affiliate-disclosure"].includes(slug)&&<div className="disclaimer">{locale==="es"?"BORRADOR: completar y revisar antes de publicar.":"DRAFT: complete and review before publishing."}</div>}</div></section>;}
+
+export function generateStaticParams() {
+  return locales.flatMap((locale) => Object.keys(pages).map((slug) => ({ locale, slug })));
+}
+
+export default async function InfoPage({ params }: { params: Promise<{ locale: string; slug: string }> }) {
+  const { locale, slug } = await params;
+  if (!isLocale(locale)) notFound();
+  const page = pages[slug]?.[locale];
+  if (!page) notFound();
+
+  return (
+    <section className="simple-page">
+      <div className="container article-content">
+        <span className="eyebrow">WELLNESS JOURNAL</span>
+        <h1>{page.title}</h1>
+        {page.body.map((paragraph, index) => <p key={index}>{paragraph}</p>)}
+        {["privacy", "cookies", "terms", "affiliate-disclosure"].includes(slug) && (
+          <div className="disclaimer">
+            {locale === "es" ? "BORRADOR: completar y revisar antes de publicar." : "DRAFT: complete and review before publishing."}
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
