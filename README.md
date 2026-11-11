@@ -24,27 +24,24 @@ Professional bilingual editorial website about health, wellbeing, fitness, sleep
 5. Run `npm run dev`.
 6. Before publishing, run `npm run typecheck` and `npm run build`.
 
-## Deploy free with Cloudflare Pages
-The project is configured for a static export. Cloudflare's official guide for static Next.js sites is:
-https://developers.cloudflare.com/pages/framework-guides/nextjs/deploy-a-static-nextjs-site/
+## Deploy free with Netlify
 
-In Cloudflare:
-1. Create or sign in to a Cloudflare account.
-2. Open **Workers & Pages** → **Create application** → **Pages** → **Connect to Git**.
-3. Authorize Cloudflare to access the GitHub repository `jose12charter12-png/Sitio`.
+Netlify explicitly states that its Free plan can host commercial projects. It currently costs $0 and includes 300 credits per month. If the account reaches its monthly credit limit, projects pause until the next billing cycle, so monitor usage:
+https://www.netlify.com/blog/introducing-netlify-free-plan/
+https://www.netlify.com/pricing/
+
+1. Create or sign in to a Netlify account.
+2. Choose **Add new project** → **Import an existing project** → **GitHub**.
+3. Authorize Netlify to access `jose12charter12-png/Sitio`.
 4. Select branch `main`.
-5. Choose the **Next.js (Static HTML Export)** preset, or set:
+5. Use these build settings:
    - Build command: `npm run build`
-   - Build output directory: `out`
-6. Deploy. Cloudflare will provide a temporary `*.pages.dev` address and automatically rebuild after later commits.
+   - Publish directory: `out`
+6. Deploy. Netlify will assign a temporary `*.netlify.app` address and rebuild automatically after future commits.
 
-The free Pages limits currently include up to 500 builds per month, 20,000 files per site and a 25 MiB maximum per file. Check the current limits before launch:
-https://developers.cloudflare.com/pages/platform/limits/
+The project uses Next.js static export, so it publishes the generated `out` folder rather than requiring a paid Next.js server runtime.
 
-Cloudflare's Developer Platform terms explicitly include Pages and permit hosting content. Do not collect or process payment-card data on a property receiving Cloudflare Free Services. This editorial/affiliate site should send purchases to the affiliate merchant and must not collect card data itself. Review the current agreement:
-https://www.cloudflare.com/service-specific-terms-developer-platform/
-
-**Important:** GitHub is connected to this project, but Cloudflare account authorization and the first deployment must be completed by the account owner in the Cloudflare dashboard. No live URL exists until Cloudflare confirms a successful deployment.
+**Important:** GitHub is connected to this project, but Netlify account authorization and the first deployment must be completed by the account owner in the Netlify dashboard. No live URL exists until Netlify confirms a successful deployment.
 
 ## Before commercial launch
 - Replace the temporary brand name and configure the final domain/URL.
