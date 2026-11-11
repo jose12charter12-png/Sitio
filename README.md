@@ -1,38 +1,61 @@
 # Wellness Journal — multilingual editorial platform
 
-Professional single-domain editorial website for health, wellbeing, fitness, sleep and recovery.
+Professional bilingual editorial website about health, wellbeing, fitness, sleep and recovery.
 
-## One domain, multiple languages
-The site uses locale paths on one domain: `/es/` and `/en/`. The root route suggests a locale based on browser language on a first visit. Visitors can change language using the site selector. No separate domains are needed.
+## Languages and URLs
+- Spanish: `/es`
+- English: `/en`
+- One site and one future custom domain, with locale-specific paths.
+- The root route detects the visitor's browser language and redirects to the matching locale.
 
-## Included foundation
-- Next.js App Router + TypeScript
-- Responsive editorial homepage and category pages
-- Spanish and English interface and starter articles
-- Article pages with localized metadata and canonical / hreflang alternates
-- XML sitemap and robots.txt
-- About, contact, privacy, cookies, terms and affiliate disclosure templates
-- Initial consent banner and configuration placeholders for analytics / advertising
-- Health-content disclaimer and editorial caution
+## Technology
+- Next.js 15 App Router, React 19 and TypeScript
+- Static export for deployment on Cloudflare Pages
+- Responsive editorial layout
+- Localized article, category and information pages
+- Metadata, canonical URLs, hreflang, sitemap and robots.txt
+- Consent-aware optional Google Tag Manager bootstrap
 
 ## Run locally
 1. Install Node.js 20.9 or later.
 2. Copy `.env.example` to `.env.local`.
-3. Set `NEXT_PUBLIC_SITE_URL` to the final canonical domain.
-4. Run `npm install`, then `npm run dev`.
-5. Run `npm run typecheck` and `npm run build` before deployment.
+3. Set `NEXT_PUBLIC_SITE_URL` to the deployed URL.
+4. Run `npm install`.
+5. Run `npm run dev`.
+6. Before publishing, run `npm run typecheck` and `npm run build`.
 
-## Before launch
-- Replace the temporary brand, contact email and example domain.
-- Expand original, expert-reviewed content; cite reliable sources and show authorship / editorial standards.
-- Adapt legal pages to the real operator, providers and target jurisdictions.
-- Replace the demo consent banner with a compliant consent management platform; configure Google Consent Mode v2 and ensure all tags respect consent.
-- Configure and verify GA4, Search Console, GTM, AdSense and advertising pixels only after account setup and approval.
-- Add real affiliate program disclosures and links; do not publish placeholder product recommendations.
-- Test mobile accessibility, Core Web Vitals, structured data, canonical URLs, hreflang, sitemap and indexing.
-- Add a genuine editorial contact address and author credentials.
+## Deploy free with Cloudflare Pages
+The project is configured for a static export. Cloudflare's official guide for static Next.js sites is:
+https://developers.cloudflare.com/pages/framework-guides/nextjs/deploy-a-static-nextjs-site/
 
-**No implementation can guarantee AdSense approval or Google rankings.** Approval depends on policy compliance, original useful content, site quality and Google's review.
+In Cloudflare:
+1. Create or sign in to a Cloudflare account.
+2. Open **Workers & Pages** → **Create application** → **Pages** → **Connect to Git**.
+3. Authorize Cloudflare to access the GitHub repository `jose12charter12-png/Sitio`.
+4. Select branch `main`.
+5. Choose the **Next.js (Static HTML Export)** preset, or set:
+   - Build command: `npm run build`
+   - Build output directory: `out`
+6. Deploy. Cloudflare will provide a temporary `*.pages.dev` address and automatically rebuild after later commits.
 
-## Environment
-See `.env.example`. Never commit secrets or private API keys.
+The free Pages limits currently include up to 500 builds per month, 20,000 files per site and a 25 MiB maximum per file. Check the current limits before launch:
+https://developers.cloudflare.com/pages/platform/limits/
+
+Cloudflare's Developer Platform terms explicitly include Pages and permit hosting content. Do not collect or process payment-card data on a property receiving Cloudflare Free Services. This editorial/affiliate site should send purchases to the affiliate merchant and must not collect card data itself. Review the current agreement:
+https://www.cloudflare.com/service-specific-terms-developer-platform/
+
+**Important:** GitHub is connected to this project, but Cloudflare account authorization and the first deployment must be completed by the account owner in the Cloudflare dashboard. No live URL exists until Cloudflare confirms a successful deployment.
+
+## Before commercial launch
+- Replace the temporary brand name and configure the final domain/URL.
+- Add a real editorial contact email and identify the responsible publisher.
+- Complete and review the privacy, cookie, terms and affiliate-disclosure pages for the actual business and markets.
+- Replace the demonstration consent banner with a suitable consent management solution; verify that every analytics/advertising tag obeys consent requirements.
+- Configure GA4, Search Console, GTM, Meta/TikTok pixels and AdSense only after creating the relevant accounts and obtaining real IDs/approval.
+- AdSense approval is not guaranteed. Publish original, useful, human-reviewed content and meet Google's publisher policies.
+- Health content must cite reliable sources, identify authors/reviewers, avoid unsupported medical claims and make clear that it is general education rather than personal medical advice.
+- Review translations for accuracy; the current Spanish and English articles are manually authored, not automatically translated.
+- Add real contact handling and a privacy-compliant newsletter provider before advertising those features.
+
+## Environment variables
+See `.env.example`. Never commit passwords, tokens or private API keys.
