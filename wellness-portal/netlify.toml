@@ -1,0 +1,20 @@
+[build]
+  base = "wellness-portal"
+  publish = "."
+
+[[redirects]]
+  from = "/"
+  to = "/en/"
+  status = 302
+
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Frame-Options = "SAMEORIGIN"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
