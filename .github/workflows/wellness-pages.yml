@@ -28,7 +28,9 @@ jobs:
             -e 's|href="/|href="/Sitio/|g' \
             -e 's|src="/|src="/Sitio/|g' \
             -e 's|url=/|url=/Sitio/|g' \
-            -e 's|location.replace("/|location.replace("/Sitio/|g' \
+            -e 's|location.replace("/|location.replace("/Sitio/|g' \\
+            -e 's|"/es/|"/Sitio/es/|g' \\
+            -e 's|"/en/|"/Sitio/en/|g' \\
             -e 's|https://REPLACE-WITH-YOUR-DOMAIN|https://jose12charter12-png.github.io/Sitio|g' {} +
           sed -i 's|https://REPLACE-WITH-YOUR-DOMAIN|https://jose12charter12-png.github.io/Sitio|g; s|/sitemap.xml|/Sitio/sitemap.xml|g' _site/robots.txt
           sed -i 's|https://REPLACE-WITH-YOUR-DOMAIN|https://jose12charter12-png.github.io/Sitio|g' _site/sitemap.xml
